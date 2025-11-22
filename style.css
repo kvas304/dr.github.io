@@ -1,211 +1,352 @@
-/* style.css */
+/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4A235A);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #050a1c 0%, #1a0f3d 30%, #2d0b5e 70%, #1e3c72 100%);
     color: #fff;
-}
-
-.birthday-card {
-    background: linear-gradient(145deg, rgba(44, 62, 80, 0.9), rgba(26, 42, 108, 0.8));
-    border-radius: 24px;
-    box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.4),
-        0 15px 25px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    max-width: 1000px;
-    width: 100%;
-    animation: cardEntrance 0.8s ease-out;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-@keyframes cardEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.card-title {
-    background: linear-gradient(135deg, #7235a8, #622dcc);
-    padding: 25px;
-    text-align: center;
-    font-size: 2.8rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    letter-spacing: 1.5px;
+    line-height: 1.6;
+    min-height: 100vh;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-.card-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
+/* ===== STAR BACKGROUND ===== */
+.stars {
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+    height: 100%;
+    z-index: -2;
 }
 
-.card-content {
-    display: flex;
-    min-height: 450px;
+.star {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: twinkle 8s infinite;
 }
 
-.image-section {
-    flex: 1;
+.star:nth-child(2n) {
+    animation-delay: 1s;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.star:nth-child(3n) {
+    animation-delay: 2s;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2);
+    }
+}
+
+/* ===== MOON ===== */
+.moon {
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #f8f8f8, #e0e0e0);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+    z-index: -1;
+    animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+    from {
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+    }
+    to {
+        box-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* ===== LAYOUT ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    margin-bottom: 40px;
     position: relative;
-    overflow: hidden;
+}
+
+.header__title {
+    font-size: 4rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+.header__subtitle {
+    font-size: 1.3rem;
+    color: #e6e6ff;
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #ffffff, transparent);
+}
+
+/* ===== CONTENT BLOCKS ===== */
+.blocks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.content-block {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.birthday-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+.content-block:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.image-section:hover .birthday-image {
-    transform: scale(1.05);
+.content-block__image {
+    flex: 1;
+    min-height: 400px;
+    overflow: hidden;
+    position: relative;
 }
 
-.image-overlay {
+.content-block__image::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(142, 45, 226, 0.2), rgba(74, 0, 224, 0.2));
-    pointer-events: none;
+    background: linear-gradient(45deg, rgba(45, 11, 94, 0.4), rgba(30, 60, 114, 0.4));
+    mix-blend-mode: overlay;
 }
 
-.text-section {
+.content-block__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.content-block:hover .content-block__img {
+    transform: scale(1.08);
+}
+
+.content-block__text {
     flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
+    padding: 60px 50px;
 }
 
-.message-container {
-    max-width: 100%;
+.content-block__title {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: 1px;
 }
 
-.birthday-message {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #f0f0f0;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.signature {
-    font-style: italic;
-    color: #d4af37;
-    font-size: 1.2rem;
-    margin-top: 25px;
-    text-align: right;
-    font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-/* Декоративные элементы */
-.birthday-card::before {
-    content: '';
+.content-block__title::after {
+    content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    transform: rotate(30deg);
-    pointer-events: none;
-}
-
-/* Анимация мерцания звезд */
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-.star {
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    animation: twinkle 3s infinite;
-}
-
-.star:nth-child(1) {
-    width: 3px;
-    height: 3px;
-    top: 15%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.star:nth-child(2) {
-    width: 2px;
+    bottom: 0;
+    left: 0;
+    width: 70px;
     height: 2px;
-    top: 25%;
-    right: 15%;
-    animation-delay: 1s;
+    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.5));
+    border-radius: 2px;
 }
 
-.star:nth-child(3) {
-    width: 4px;
-    height: 4px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 2s;
+.content-block__description {
+    font-size: 1.2rem;
+    color: #f0f0ff;
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .card-content {
+/* ===== MODIFIERS ===== */
+.content-block--reverse {
+    flex-direction: row-reverse;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 60px;
+    color: #b8b8ff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.footer__text {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 968px) {
+    .header__title {
+        font-size: 3.2rem;
+    }
+    
+    .moon {
+        width: 80px;
+        height: 80px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    .content-block,
+    .content-block--reverse {
         flex-direction: column;
     }
     
-    .image-section, .text-section {
-        flex: none;
+    .content-block__text {
+        padding: 50px 40px;
     }
     
-    .image-section {
-        height: 250px;
+    .content-block__image {
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__title {
+        font-size: 2.8rem;
     }
     
-    .card-title {
+    .header__subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .content-block__title {
+        font-size: 2rem;
+    }
+    
+    .content-block__description {
+        font-size: 1.1rem;
+    }
+    
+    .content-block__text {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__title {
         font-size: 2.2rem;
-        padding: 20px;
     }
     
-    .text-section {
-        padding: 30px 25px;
+    .header {
+        padding: 80px 20px 60px;
     }
     
-    .birthday-message {
+    .content-block__text {
+        padding: 35px 25px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .footer__text {
         font-size: 1rem;
+    }
+    
+    .moon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .stars,
+    .star,
+    .moon {
+        display: none;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .content-block {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    .header__title,
+    .content-block__title {
+        color: black !important;
     }
 }
