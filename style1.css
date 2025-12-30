@@ -10,15 +10,322 @@ html {
     font-size: 16px;
     scroll-behavior: smooth;
 }
-
 body {
-    background: linear-gradient(135deg,#000000 0%, #292e0c 20%, #484f15, #6c0d05 60%, #b6480c , #c11306 100%);
+      cursor: url('path-to-image.png'), auto;
+}
+body {
+    background: linear-gradient(135deg,#000000 0%, #061e33 20%, #083861, #0c70a2 60%, #3fa7ca , #c6d7e1 100%);
     color: #fff;
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    
 }
+
+/* ===== Секция с подарком ===== */
+.gift-section {
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+/* Контейнер для коробки */
+.gift-container {
+    perspective: 1000px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Подарочная коробка */
+.gift-box {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.gift-box:hover {
+    transform: scale(1.05);
+}
+
+/* Основа коробки */
+.box-bottom {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    bottom: 0;
+    left: 25px;
+    transform-style: preserve-3d;
+}
+
+.box-bottom-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #8B4513;
+    transform: translateY(75px) rotateX(-90deg);
+    border: 3px solid #654321;
+}
+
+.box-side {
+    position: absolute;
+    background: #D2691E;
+    border: 2px solid #8B4513;
+}
+
+.box-side.front { 
+    width: 200px; 
+    height: 75px; 
+    transform: rotateX(90deg); 
+    bottom: 0; 
+}
+
+.box-side.back { 
+    width: 200px; 
+    height: 75px; 
+    transform: rotateX(90deg) translateZ(75px); 
+    bottom: 0; 
+}
+
+.box-side.left { 
+    width: 75px; 
+    height: 150px; 
+    transform: rotateY(90deg) rotateX(90deg); 
+    left: 0; 
+}
+
+.box-side.right { 
+    width: 75px; 
+    height: 150px; 
+    transform: rotateY(90deg) rotateX(90deg) translateZ(125px); 
+    right: 0; 
+}
+
+/* Крышка коробки */
+.box-lid {
+    position: absolute;
+    width: 220px;
+    height: 40px;
+    top: 0;
+    left: 15px;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.lid-top {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #D2691E;
+    border: 3px solid #8B4513;
+    border-bottom: none;
+}
+
+.lid-side {
+    position: absolute;
+    background: #D2691E;
+    border: 2px solid #8B4513;
+}
+
+.lid-side.front { 
+    width: 220px; 
+    height: 20px; 
+    transform: rotateX(90deg) translateZ(20px); 
+    bottom: 0; 
+}
+
+.lid-side.back { 
+    width: 220px; 
+    height: 20px; 
+    transform: rotateX(90deg) translateZ(-20px); 
+    bottom: 0; 
+}
+
+.lid-side.left { 
+    width: 20px; 
+    height: 40px; 
+    transform: rotateY(90deg) rotateX(90deg); 
+    left: 0; 
+}
+
+.lid-side.right { 
+    width: 20px; 
+    height: 40px; 
+    transform: rotateY(90deg) rotateX(90deg) translateZ(200px); 
+    right: 0; 
+}
+
+/* Лента на коробке */
+.ribbon {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: #FF6B6B;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid #FF4757;
+}
+
+/* Бантик */
+.bow {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.bow-center {
+    width: 30px;
+    height: 30px;
+    background: #FF6B6B;
+    border-radius: 50%;
+    border: 2px solid #FF4757;
+    position: relative;
+    z-index: 2;
+}
+
+.bow-loop {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: #FF6B6B;
+    border: 2px solid #FF4757;
+    border-radius: 50%;
+    top: -15px;
+}
+
+.loop-left {
+    left: -35px;
+    transform: rotate(-30deg);
+}
+
+.loop-right {
+    right: -35px;
+    transform: rotate(30deg);
+}
+
+/* Сюрприз внутри */
+.surprise-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 5;
+}
+
+.surprise-image {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+.surprise-text h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.surprise-text p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Конфетти */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FF6B6B;
+    opacity: 0;
+    border-radius: 2px;
+}
+
+.confetti:nth-child(1) { top: 10%; left: 20%; background: #4ECDC4; }
+.confetti:nth-child(2) { top: 20%; left: 80%; background: #FFD166; }
+.confetti:nth-child(3) { top: 60%; left: 10%; background: #06D6A0; }
+.confetti:nth-child(4) { top: 80%; left: 70%; background: #118AB2; }
+.confetti:nth-child(5) { top: 40%; left: 50%; background: #EF476F; }
+
+/* Инструкция */
+.gift-instruction {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    animation: pulse 2s infinite;
+}
+
+/* Анимации */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+@keyframes confettiFall {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(100px) rotate(360deg); 
+        opacity: 0; 
+    }
+}
+
+/* Классы для анимации при открытии */
+.gift-box.open .box-lid {
+    transform: rotateX(-120deg);
+}
+
+.gift-box.open .surprise-content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.gift-box.open .confetti {
+    animation: confettiFall 1s ease-out forwards;
+}
+
+.gift-box.open .confetti:nth-child(1) { animation-delay: 0.8s; }
+.gift-box.open .confetti:nth-child(2) { animation-delay: 1s; }
+.gift-box.open .confetti:nth-child(3) { animation-delay: 1.2s; }
+.gift-box.open .confetti:nth-child(4) { animation-delay: 1.4s; }
+.gift-box.open .confetti:nth-child(5) { animation-delay: 1.6s; }
 
 /*======Navigation=======*/
 nav {
@@ -30,7 +337,7 @@ nav {
 
 .nav-btn, .active{
     padding: 10px 10px;
-    background: linear-gradient(135deg,#000000 0%, #292e0c 20%, #6c0d05 60%, #c11306 100%);
+    background: linear-gradient(135deg, #000000 0%, #061e33 20%, #083861, #0c70a2 60%, #3fa7ca , #c6d7e1 100%);
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -548,17 +855,6 @@ nav {
     color: #b8b8ff;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
-}
-
-.footer::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
 }
 
 .footer__text {
