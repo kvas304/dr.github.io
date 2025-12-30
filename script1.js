@@ -3,9 +3,9 @@
 const TARGET_YEAR = 2026;
 const TARGET_MONTH = 0;    // 0 = январь, 1 = февраль, ...
 const TARGET_DAY = 0;
-const TARGET_HOUR = 0;     // 0-23
-const TARGET_MINUTE = 0;   // 0-59
-const TARGET_SECOND = 0;   // 0-59
+const TARGET_HOUR = 23;     // 0-23
+const TARGET_MINUTE = 59;   // 0-59
+const TARGET_SECOND = 59;   // 0-59
 
 // Дата создаётся автоматически
 const TARGET_DATE = new Date(
