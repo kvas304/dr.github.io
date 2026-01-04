@@ -4,8 +4,8 @@
 const TARGET_YEAR = 2026;
 const TARGET_MONTH = 0;    // 0 = январь, 1 = февраль, ...
 const TARGET_DAY = 5;
-const TARGET_HOUR = 18:30;     // 0-23
-const TARGET_MINUTE = 0;   // 0-59
+const TARGET_HOUR = 18;     // 0-23
+const TARGET_MINUTE = 30;   // 0-59
 const TARGET_SECOND = 0;   // 0-59
 
 // Дата создаётся автоматически
@@ -286,3 +286,4 @@ window.addEventListener('mousemove', function(e) {
     });
 
 });
+
