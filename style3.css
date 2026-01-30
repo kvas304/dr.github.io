@@ -308,7 +308,7 @@ nav {
 
 .nav-btn, .active{
     padding: 10px 10px;
-    background: linear-gradient(135deg, #000000 0%, #050e38 20%, #60138d, #2b1a52 60%, #327c94 , #75f0e5 100%);
+    background: linear-gradient(135deg, #000428 0%,#004e92 20%,#8a2be2 50%, #4b0082 75%,#00d4ff 100%);
     color: white;
     text-decoration: none;
     border-radius: 25px;
